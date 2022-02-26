@@ -9,7 +9,6 @@ import javax.persistence.Table;
 public class Car {
 	@Id
 	@GeneratedValue
-	@Column(name="CARID")
 	private int carId;
 	@Column(name="SAFETYRATING")
 	private int safetyRating;

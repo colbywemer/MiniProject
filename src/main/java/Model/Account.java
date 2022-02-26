@@ -9,7 +9,6 @@ import javax.persistence.Table;
 public class Account {
 	@Id
 	@GeneratedValue
-	@Column(name="ACCOUNTID")
 	private int accountId;
 	@Column(name="EMAIL")
 	private String email;

@@ -1,30 +1,39 @@
 package Model;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="orders")
 public class Order {
 	@Id
 	@GeneratedValue
-	@Column(name="ORDERID")
 	private int orderId;
-	@Column(name="ACCOUNTID")
-	private int accountId;
-	@Column(name="CARID")
-	private int carId;
-
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	private Account account;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	private Car car;
+	
 	public Order() {
 		super();
 	}
-
-	public Order(int accountId, int carId) {
-		this.accountId = accountId;
-		this.carId = carId;
+	
+	public Order(int orderId, Account account, Car car) {
+		super();
+		this.orderId = orderId;
+		this.account = account;
+		this.car = car;
 	}
 	
+	public Order(Account account, Car car) {
+		super();
+		this.account = account;
+		this.car = car;
+	}
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -33,22 +42,25 @@ public class Order {
 		this.orderId = orderId;
 	}
 
-	public int getAccountId() {
-		return accountId;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
-	public int getCarId() {
-		return carId;
+	public Car getCar() {
+		return car;
 	}
 
-	public void setCarId(int carId) {
-		this.carId = carId;
+	public void setCar(Car car) {
+		this.car = car;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", account=" + account + ", car=" + car + "]";
+	}
 	
-
 }
