@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class AdminServlet
  */
-@WebServlet("/homeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/adminServlet")
+public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public AdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,16 +35,21 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-
+		Integer id = Integer.parseInt(request.getParameter("id"));
 		if(action == null) {
-			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+			getServletContext().getRequestDispatcher("/admin-home.jsp").forward(request, response);
 		}
-		if(action.equals("Login")) {
-			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		if(action.equals("View As Customer")) {
+			request.setAttribute("id", id);
+			getServletContext().getRequestDispatcher("/listings.jsp").forward(request, response);
 		}
-		if(action.equals("Register")) {
-			System.out.println("Inside Register");
-			getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+		if(action.equals("Modify Listings")) {
+			request.setAttribute("id", id);
+			getServletContext().getRequestDispatcher("/modify-listings.jsp").forward(request, response);
+		}
+		if(action.equals("Create Listing")) {
+			request.setAttribute("id", id);
+			getServletContext().getRequestDispatcher("/create-listing.jsp").forward(request, response);
 		}
 	}
 
