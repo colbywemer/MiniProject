@@ -12,6 +12,9 @@
 <input type ="submit" value ="View As Customer" name="action">
 <input type ="submit" value ="Modify Listings" name="action">
 <input type ="submit" value ="Create Listing" name="action">
+
+<input type ="submit" value ="View Orders" name="action">
+
 </form>
 </body>
 </html>
