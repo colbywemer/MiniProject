@@ -35,6 +35,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
+
 		if(action == null) {
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		}
