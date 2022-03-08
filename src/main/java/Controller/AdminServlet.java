@@ -41,8 +41,10 @@ public class AdminServlet extends HttpServlet {
 		}
 		if(action.equals("View As Customer")) {
 			request.setAttribute("id", id);
+
 			CarHelper ch = new CarHelper();
 			request.setAttribute("allCars", ch.showAllCars());
+
 			getServletContext().getRequestDispatcher("/listings.jsp").forward(request, response);
 		}
 		if(action.equals("Modify Listings")) {
@@ -53,10 +55,12 @@ public class AdminServlet extends HttpServlet {
 			request.setAttribute("id", id);
 			getServletContext().getRequestDispatcher("/create-listing.jsp").forward(request, response);
 		}
+
 		if(action.equals("View Orders")) {
 			request.setAttribute("id", id);
 			getServletContext().getRequestDispatcher("/view-orders.jsp").forward(request, response);
 		}
+
 	}
 
 }
