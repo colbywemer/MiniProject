@@ -33,7 +33,7 @@ public class OrderHelper {
 	public void deleteOrder(Order toDelete) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Order> typedQuery = em.createQuery("select order from Order order where order.orderId = :selectedId", Order.class);
+		TypedQuery<Order> typedQuery = em.createQuery("select o from Order o where o.orderId = :selectedId", Order.class);
 		typedQuery.setParameter("selectedId", toDelete.getOrderId());
 		typedQuery.setMaxResults(1);
 		Order result = typedQuery.getSingleResult();

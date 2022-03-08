@@ -56,6 +56,7 @@ public class ListingServlet extends HttpServlet {
 				Order o = new Order(a,c,ld);
 				oh.insertNewOrder(o);
 				request.setAttribute("id", accountId);
+				request.setAttribute("order", c);
 			}catch(NumberFormatException e) {
 				path = "/listings.jsp";
 				request.setAttribute("id", accountId);

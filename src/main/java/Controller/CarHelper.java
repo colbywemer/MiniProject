@@ -23,7 +23,7 @@ public class CarHelper {
 		List<Car>allCars = em.createQuery("SELECT i FROM Car i").getResultList();
 		return allCars;
 	}
-	public void deleteAccount(Car toDelete) {
+	public void deleteCar(Car toDelete) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Car>typedQuery = em.createQuery("select li from Car li where li.color =:selectedColor and li.drivetrain =:selectedDrivetrain and li.engine =:selectedEngine and li.fuelType =:selectedFuelType and li.make =:selectedMake and li.model =:selectedModel and li.mpg =:selectedMpg and li.ordered =:selectedOrdered and li.price =:selectedPrice and li.safetyRating =:selectedSafetyRating and li.transmission =:selectedTransmission and li.type =:selectedType and li.year =:selectedYear",Car.class);

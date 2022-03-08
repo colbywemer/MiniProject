@@ -17,7 +17,7 @@ public class Car {
 	@Column(name="PRICE")
 	private double price;
 	@Column(name="TYPE")
-	private String Type;
+	private String type;
 	@Column(name="MAKE")
 	private String make;
 	@Column(name="MODEL")
@@ -35,9 +35,7 @@ public class Car {
 	@Column(name="DRIVETRAIN")
 	private String drivetrain;
 	@Column(name="ORDERED")
-
 	private Boolean ordered;
-
 	
 	public Car() {
 		super();
@@ -45,12 +43,11 @@ public class Car {
 
 	public Car(int safetyRating, int mpg, double price, String type, String make, String model, String year,
 			String color, String engine, String transmission, String fuelType, String drivetrain, Boolean ordered) {
-
 		super();
 		this.safetyRating = safetyRating;
 		this.mpg = mpg;
 		this.price = price;
-		Type = type;
+		this.type = type;
 		this.make = make;
 		this.model = model;
 		this.year = year;
@@ -95,11 +92,11 @@ public class Car {
 	}
 	
 	public String getType() {
-		return Type;
+		return type;
 	}
 	
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
 	
 	public String getMake() {
@@ -166,13 +163,11 @@ public class Car {
 		this.drivetrain = drivetrain;
 	}
 
-
 	public Boolean getOrdered() {
 		return ordered;
 	}
 
 	public void setOrdered(Boolean ordered) {
-
 		this.ordered = ordered;
 	}
 }

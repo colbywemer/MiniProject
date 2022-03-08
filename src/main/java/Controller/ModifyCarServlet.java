@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.Car;
+
 /**
- * Servlet implementation class AdminServlet
+ * Servlet implementation class ModifyCarServlet
  */
-@WebServlet("/adminServlet")
-public class AdminServlet extends HttpServlet {
+@WebServlet("/modifyCarServlet")
+public class ModifyCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminServlet() {
+    public ModifyCarServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,30 +38,29 @@ public class AdminServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		if(action == null) {
+		CarHelper ch = new CarHelper();
+		if(action.equals("Logout")) {
+			getServletContext().getRequestDispatcher("/home.html").forward(request, response);
+		}
+		else if(action.equals("Home")) {
+			request.setAttribute("id", id);
 			getServletContext().getRequestDispatcher("/admin-home.jsp").forward(request, response);
 		}
-		if(action.equals("View As Customer")) {
+		else if(action.equals("edit")) {
+			Integer carId = Integer.parseInt(request.getParameter("carId"));
 			request.setAttribute("id", id);
-			CarHelper ch = new CarHelper();
-			request.setAttribute("allCars", ch.showAllCars());
-			getServletContext().getRequestDispatcher("/listings.jsp").forward(request, response);
+			request.setAttribute("car", ch.searchForCarById(carId));
+			getServletContext().getRequestDispatcher("/edit-car.jsp").forward(request, response);
 		}
-		if(action.equals("Modify Listings")) {
-			request.setAttribute("id", id);
-			CarHelper ch = new CarHelper();
-			request.setAttribute("allCars", ch.showAllCars());
-			getServletContext().getRequestDispatcher("/modify-listings.jsp").forward(request, response);
-		}
-		if(action.equals("Create Listing")) {
-			request.setAttribute("id", id);
-			getServletContext().getRequestDispatcher("/create-listing.jsp").forward(request, response);
-		}
-		if(action.equals("View Orders")) {
-			request.setAttribute("id", id);
-			OrderHelper oh = new OrderHelper();
-			request.setAttribute("allOrders", oh.getOrders());
-			getServletContext().getRequestDispatcher("/view-orders.jsp").forward(request, response);
+		else if(action.equals("delete")) {
+			Integer carId = Integer.parseInt(request.getParameter("carId"));
+			Car toDelete = ch.searchForCarById(carId);
+			if(toDelete.getOrdered() == false) {
+				ch.deleteCar(toDelete);
+			}
+				request.setAttribute("id", id);
+				request.setAttribute("allCars", ch.showAllCars());
+				getServletContext().getRequestDispatcher("/modify-listings.jsp").forward(request, response);
 		}
 	}
 

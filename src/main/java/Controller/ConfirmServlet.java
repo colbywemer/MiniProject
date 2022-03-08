@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class ConfirmServlet
  */
-@WebServlet("/homeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/confirmServlet")
+public class ConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public ConfirmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +35,15 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		if(action == null) {
-			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		if(action.equals("Logout")) {
+			getServletContext().getRequestDispatcher("/home.html").forward(request, response);
 		}
-		if(action.equals("Login")) {
-			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-		}
-		if(action.equals("Register")) {
-			System.out.println("Inside Register");
-			getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+		else {
+			CarHelper ch = new CarHelper();
+			request.setAttribute("allCars", ch.showAllCars());
+			request.setAttribute("id", id);
+			getServletContext().getRequestDispatcher("/listings.jsp").forward(request, response);
 		}
 	}
 

@@ -5,6 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login</title>
+<style>
+body{
+background-color: red;
+text-align: center;
+}
+</style>
 </head>
 <body>
 <form action = "loginServlet" method= "post">

@@ -1,5 +1,4 @@
 package Model;
-
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -15,21 +14,18 @@ public class Order {
 	@Id
 	@GeneratedValue
 	private int orderId;
-
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Account account;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Car car;
 	@Column(name="ORDERDATE")
 	private LocalDate ld;
-
 	
 	public Order() {
 		super();
 	}
 	
 	public Order(int orderId, Account account, Car car, LocalDate ld) {
-
 		super();
 		this.orderId = orderId;
 		this.account = account;
@@ -42,7 +38,6 @@ public class Order {
 		this.account = account;
 		this.car = car;
 		this.ld = ld;
-
 	}
 
 	public int getOrderId() {
@@ -68,7 +63,6 @@ public class Order {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-
 
 	public LocalDate getLd() {
 		return ld;
